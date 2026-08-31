@@ -61,7 +61,7 @@ clean_temp_directory()
 def unique_subtitle_path(display_name, language, sub_extension):
     return os.path.join(
         __temp__,
-        f"{display_name}.{language}.{uuid.uuid4().hex[:8]}.{sub_extension}",
+        f"{display_name}.{language}.{uuid.uuid4().hex[:8]}{sub_extension}",
     )
 
 
@@ -172,7 +172,9 @@ class SubtitleDownloader:
 
     def list_subtitle(self, entry, sub_file):
         display_name = entry.english_name or entry.name or str(entry.id)
-        list_item = xbmcgui.ListItem(label=display_name, label2=sub_file.name)
+        list_item = xbmcgui.ListItem(
+            label="Japanese", label2=f"{display_name} - {sub_file.name}"
+        )
         list_item.setProperty(
             "unverified",
             "true" if getattr(entry.flags, "unverified", False) else "false",
