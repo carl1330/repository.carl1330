@@ -1,2 +1,2 @@
 [tool.pyright]
-extraPaths = ["."]
+extraPaths = ["repo/service.subtitles.jimaku-cc"]

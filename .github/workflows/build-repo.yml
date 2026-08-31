@@ -1,0 +1,50 @@
+name: Build Kodi repository
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'repo/zips/**'
+      - 'index.html'
+      - 'repository.carl1330-*.zip'
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-repo
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Zips every addon folder under repo/ whose version changed, and
+      # refreshes repo/zips/addons.xml + addons.xml.md5.
+      - name: Generate zips and addons.xml
+        run: python _repo_generator.py
+
+      # Kodi browses HTTP sources by parsing <a href> anchors, and GitHub
+      # Pages serves no directory listings, so we ship our own.
+      - name: Generate directory listings
+        run: python tools/make_index.py
+
+      - name: Commit generated artifacts
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A repo/zips index.html repo/index.html 'repository.carl1330-*.zip'
+          if git diff --cached --quiet; then
+            echo "Nothing to publish -- no version was bumped."
+            exit 0
+          fi
+          git commit -m "chore: rebuild repository artifacts"
+          git push

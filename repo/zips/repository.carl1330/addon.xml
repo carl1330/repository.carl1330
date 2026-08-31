@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.carl1330" name="carl1330's Repository" version="1.0.0" provider-name="carl1330">
+  <extension point="xbmc.addon.repository" name="carl1330's Repository">
+    <dir>
+      <info compressed="false">https://carl1330.github.io/repository.carl1330/repo/zips/addons.xml</info>
+      <checksum>https://carl1330.github.io/repository.carl1330/repo/zips/addons.xml.md5</checksum>
+      <datadir zip="true">https://carl1330.github.io/repository.carl1330/repo/zips/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">carl1330's Kodi addon repository</summary>
+    <description lang="en_GB">Repository for carl1330's Kodi addons, including the Jimaku subtitle service.</description>
+    <platform>all</platform>
+    <license>GPL-2.0-only</license>
+    <source>https://github.com/carl1330/repository.carl1330</source>
+    <!-- Drop icon.png (512x512) and fanart.jpg next to this file and uncomment:
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+    -->
+  </extension>
+</addon>

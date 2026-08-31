@@ -24,7 +24,6 @@ class JimakuProvider:
             raise ConfigurationError("api_key must be specified")
 
         self.api_key = api_key
-        log(__name__, "API KEY" + api_key)
 
         self.request_headers = {
             "Authorization": f"{self.api_key}",
