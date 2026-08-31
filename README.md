@@ -63,6 +63,20 @@ python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt   # requests + Kodistubs, for editor completion
 ```
 
+## Acknowledgements
+
+Jimaku's structure is modelled on the official
+[OpenSubtitles Kodi addon](https://github.com/xbmc/repo-scripts/tree/matrix/service.subtitles.opensubtitles)
+(`service.subtitles.opensubtitles`) — the subtitle-service entry point, the
+`SubtitleDownloader` action dispatch, and the temp-file handling all follow the
+patterns it established. Thanks to its authors and to the Kodi team for keeping
+a clear reference implementation in the open. It is GPL-2.0-only, the same
+license this addon uses.
+
+The repository packaging follows
+[repository.prism](https://github.com/Goldenfreddy0703/repository.prism), whose
+`_repo_generator.py` is used here unmodified.
+
 ## License
 
 GPL-2.0-only
